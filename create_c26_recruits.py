@@ -10,19 +10,14 @@ connection = psycopg2.connect(database="development", user="user", password="pas
 cursor = connection.cursor()
 
 # SQL Query - Insert into recruit
-query = """ INSERT INTO recruit(personal_email_address)
+query = """ INSERT INTO recruit(first_name, surname, chat_name, github_name, id_number)
         VALUES
-        (newkobuoe@gmail.com)
+        ('Nasni', 'Smith', '@Nasni', 'github.com/Nasni', '9803249905811'),
+        ('Tetelo', 'Mohapi', 'TTQueen', 'github.com/TTForever', '9209108040667'),
+        ('Schubaica', 'Jenkies', 'Baiccah', 'github.com/baica', '0211309023497'),
+        ('Peter', 'Brown', 'Pieter', 'github.com/PeeDawg', '85091528500369'),
+        ('Tshepo', 'Mokoena', 'Batisah', 'github.com/BeastCode', '8704203549894')
         """
-    
-        # first_name, surname, chat_name, github_name, id_number)
-        # VALUES
-        # ('Nasni', 'Smith', '@Nasni', 'github.com/Nasni', '9803249905811'),
-        # ('Tetelo', 'Mohapi', 'TTQueen', 'github.com/TTForever', '9209108040667'),
-        # ('Schubaica', 'Jenkies', 'Baiccah', 'github.com/baica', '0211309023497'),
-        # ('Peter', 'Brown', 'Pieter', 'github.com/PeeDawg', '85091528500369'),
-        # ('Tshepo', 'Mokoena', 'Batisah', 'github.com/BeastCode', '8704203549894')
-        # """
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:pass@127.0.0.1/development'
@@ -47,12 +42,6 @@ class Recruit(db.Model):
     id_number = db.Column(db.NUMERIC(13))
     #dev =db.relationship('Dev', backref='owner', lazy='dynamic')
 
-# db.init_app(app)
-#     if config is None:
-#         app.config.from_object(config.BaseConfig)
-#     else:
-#         app.config.from_object(config)
- 
         
 # Executes instructed query method
 cursor.execute(query)
